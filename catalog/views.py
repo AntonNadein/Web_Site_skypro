@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 
 from catalog.forms import AddProductForm
 from catalog.models import Category, Product
@@ -12,7 +12,7 @@ def product_list(request):
 
 
 def product_info(request, product_pk):
-    product = Product.objects.get(pk=product_pk)
+    product = get_object_or_404(Product, pk=product_pk)
     context = {"product": product}
     return render(request, "catalog/product_info.html", context=context)
 
@@ -28,7 +28,7 @@ def contacts(request):
 
 
 def category_list(request, category_pk):
-    category = Category.objects.get(pk=category_pk)
+    category = get_object_or_404(Category, pk=category_pk)
     products = Product.objects.filter(category=category)
     context = {"category": category, "products": products}
     return render(request, "catalog/category_list.html", context=context)
