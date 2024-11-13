@@ -1,0 +1,23 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+
+<div class="col-10">
+    <h1 class="mt-5 text-center">{{ category.name }}</h1>
+    <div class="mt-5 row row-cols-1 row-cols-md-3 g-4">
+                {% for product in products %}
+                <div class="col">
+                        <div class="card h-100 text-center">
+                            <div class="card-header">
+                            {{ product.name }}
+                                </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Цена: {{ product.price }}</h5>
+                                <p class="card-text">{{ product.description|truncatechars:100 }}</p>
+                                <a href="{% url 'catalog:product_info' product.pk %}" class="btn btn-light border-primary text-primary">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+</div>
+{% endblock %}
