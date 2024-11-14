@@ -1,0 +1,24 @@
+{% extends 'catalog/base.html' %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+
+<div class="col-10">
+            <div class="mt-5">
+                <div class="col">
+                        <div class="card text-center">
+                            <div class="card-header">
+                            {{ product.name }}
+                                </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Цена: {{ product.price }}</h5>
+                                {% if product.image %}
+                                    <img class="rounded float-start img-fluid" width="50%" height="200" src="{{ product.image.url }}">
+                                {% endif %}
+                                <p class="card-text">Описание: {{ product.description }}</p>
+                                <a href="{% url 'catalog:product_list' %}" class="btn btn-light border-primary text-primary">Назад</a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+    </div>
+{% endblock %}

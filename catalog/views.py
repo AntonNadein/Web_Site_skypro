@@ -1,9 +1,20 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render, get_object_or_404
+
+from catalog.forms import AddProductForm
+from catalog.models import Category, Product
 
 
-def home_page(request):
-    return render(request, "catalog/home_page.html")
+def product_list(request):
+    products = Product.objects.all()
+    context = {"products": products}
+    return render(request, "catalog/product_list.html", context=context)
+
+
+def product_info(request, product_pk):
+    product = get_object_or_404(Product, pk=product_pk)
+    context = {"product": product}
+    return render(request, "catalog/product_info.html", context=context)
 
 
 def contacts(request):
@@ -14,3 +25,20 @@ def contacts(request):
         print(f"Сообщение: {message} от {name}. Почта для обратной связи: {email}")
         return HttpResponse(f"Спасибо, {name}! Ваше сообщение получено.")
     return render(request, "catalog/contacts.html")
+
+
+def category_list(request, category_pk):
+    category = get_object_or_404(Category, pk=category_pk)
+    products = Product.objects.filter(category=category)
+    context = {"category": category, "products": products}
+    return render(request, "catalog/category_list.html", context=context)
+
+
+def add_product(request):
+    form = AddProductForm(request.POST)
+    context = {"form": form}
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect("/")
+    return render(request, "catalog/add_product.html", context=context)
