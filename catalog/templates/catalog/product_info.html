@@ -15,7 +15,9 @@
                                     <img class="rounded float-start img-fluid" width="50%" height="200" src="{{ product.image.url }}">
                                 {% endif %}
                                 <p class="card-text">Описание: {{ product.description }}</p>
-                                <a href="{% url 'catalog:product_list' %}" class="btn btn-light border-primary text-primary">Назад</a>
+                                <a href="{% url 'catalog:product_list' %}" class="btn btn-light border-primary text-primary">На Гланую</a>
+                                <a href="{% url 'catalog:update_product' product.pk %}" class="btn btn-light border-primary text-primary">Редактировать</a>
+                                <a href="{% url 'catalog:delete_product' product.pk %}" class="btn btn-danger border-light text-light">Удалить</a>
                             </div>
                         </div>
                     </div>
