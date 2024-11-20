@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ object.title }}{% endblock %}
+{% block content %}
+<h1 class="mt-5 text-center">{{ object.title }}</h1>
+<div class="col-1"></div>
+<div class="col-10">
+    <div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <a href="{% url 'blog:blog_list' %}" class="btn btn-primary">Отменить</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
