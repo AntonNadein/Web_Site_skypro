@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from catalog.forms import AddProductForm
@@ -10,20 +10,20 @@ from catalog.models import Category, Product
 
 class ProductListView(ListView):
     model = Product
-    context_object_name = 'products'
-    template_name = 'catalog/product_list.html'
+    context_object_name = "products"
+    template_name = "catalog/product_list.html"
 
 
 class ProductDetailView(DetailView):
     model = Product
-    context_object_name = 'product'
-    template_name = 'catalog/product_info.html'
+    context_object_name = "product"
+    template_name = "catalog/product_info.html"
 
 
 class ProductCreateView(CreateView):
     model = Product
     form_class = AddProductForm
-    template_name = 'catalog/add_product.html'
+    template_name = "catalog/add_product.html"
     success_url = reverse_lazy("catalog:product_list")
 
 
@@ -36,7 +36,7 @@ class ProductDeleteView(DeleteView):
 class ProductUpdateView(UpdateView):
     model = Product
     form_class = AddProductForm
-    template_name = 'catalog/add_product.html'
+    template_name = "catalog/add_product.html"
     success_url = reverse_lazy("catalog:product_list")
 
 
@@ -55,11 +55,8 @@ class CategoryListView(TemplateView):
     template_name = "catalog/category_list.html"
 
     def get(self, request, *args, **kwargs):
-        category_pk = kwargs.get('pk')
+        category_pk = kwargs.get("pk")
         category = get_object_or_404(Category, pk=category_pk)
         products = Product.objects.filter(category=category)
-        context = {
-            "category": category,
-            "products": products
-        }
+        context = {"category": category, "products": products}
         return self.render_to_response(context)
