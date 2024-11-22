@@ -1,15 +1,17 @@
 {% extends 'catalog/base.html' %}
 {% block title %}Добавление продукта{% endblock %}
 {% block content %}
-<div class="col-10 mt-5 text-start">
-<h1 class="text-center">Добавить продукт</h1>
-    <form action="{% url 'catalog:add_product' %}" method="post">
-        {% csrf_token %}
-        {% for f in form %}
-        <p><label class="fs-4" for="{{ f.id_for_label }}">{{ f.label }}:</label> {{ f }} </p>
-        <div class="fs-6"> {{ f.errors }} </div>
-        {% endfor %}
-        <button type="submit" class="btn btn-primary">Добавить</button>
-          </form>
+<div class="col-10 mt-5">
+    <h1 class="text-center">Добавить продукт</h1>
+    <div class="col-4 mt-5">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for f in form %}
+            <p><label class="fs-4" for="{{ f.id_for_label }}">{{ f.label }}:</label> {{ f }} </p>
+            <div class="fs-6"> {{ f.errors }}</div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+    </div>
 </div>
 {% endblock %}
