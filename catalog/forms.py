@@ -21,7 +21,7 @@ class AddProductForm(MixinProduct, forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ["name", "description", "image", "category", "price", "updated_at"]
+        fields = ["name", "description", "image", "category", "price",]
         widgets = {
             "name": forms.TextInput(attrs={"class": "form-input"}),
             "description": forms.Textarea(attrs={"cols": 80, "rows": 10}),

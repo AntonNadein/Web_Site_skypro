@@ -3,16 +3,20 @@
 {% block content %}
 <div class="col-10 mt-5">
     <h1 class="text-center">{% if object %}Редактировать продукт{% else %}Добавить продукт{% endif %}</h1>
-        <div class="col-6 mt-5">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.non_field_errors }}
-                {% for f in form %}
-                <p><label class="fs-5" for="{{ f.id_for_label }}">{{ f.label }}:</label> {{ f }} </p>
-                <div class="fs-6"> {{ f.errors }}</div>
-                {% endfor %}
-                <button type="submit" class="btn btn-primary">Сохранить</button>
-            </form>
-        </div>
+    <div class="col-6 mt-5">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for f in form %}
+            <p><label class="fs-5" for="{{ f.id_for_label }}">{{ f.label }}:</label> {{ f }} </p>
+            <div class="fs-6"> {{ f.errors }}</div>
+            {% endfor %}
+            <ul class="nav nav-pills flex-column h-100">
+                <li class="nav-item dropup mt-auto">
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </li>
+            </ul>
+        </form>
+    </div>
 </div>
 {% endblock %}
