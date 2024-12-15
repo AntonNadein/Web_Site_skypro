@@ -21,7 +21,13 @@ class AddProductForm(MixinProduct, forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ["name", "description", "image", "category", "price",]
+        fields = [
+            "name",
+            "description",
+            "image",
+            "category",
+            "price",
+        ]
         widgets = {
             "name": forms.TextInput(attrs={"class": "form-input"}),
             "description": forms.Textarea(attrs={"cols": 80, "rows": 10}),
@@ -37,9 +43,9 @@ class AddProductForm(MixinProduct, forms.ModelForm):
         image = self.cleaned_data.get("image")
         if image:
             valid_formats = ["image/jpeg", "image/png"]
-            print(image.content_type)
-            if image.content_type not in valid_formats:
-                raise ValidationError("Неверный формат файла. Допустимые форматы: JPEG, PNG.")
+            if hasattr(image, "content_type"):
+                if image.content_type not in valid_formats:
+                    raise ValidationError("Неверный формат файла. Допустимые форматы: JPEG, PNG.")
 
             size = image.size
             if size > 1024 * 1024 * 70:

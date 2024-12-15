@@ -1,12 +1,26 @@
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy
-from django.views.generic import DetailView, ListView, TemplateView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse, HttpResponseForbidden
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, ListView, TemplateView, View
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from catalog.forms import AddProductForm
 from catalog.models import Category, Product
+
+
+class ModerationProductView(LoginRequiredMixin, View):
+
+    def post(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+
+        if not request.user.has_perm("catalog.can_unpublish_product"):
+            return HttpResponseForbidden("У вас нет прав для снятия публикации.")
+
+        product.is_published = False
+        product.save()
+
+        return redirect("catalog:product_info", pk=pk)
 
 
 class ProductListView(ListView):
@@ -27,11 +41,25 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     template_name = "catalog/add_product.html"
     success_url = reverse_lazy("catalog:product_list")
 
+    def form_valid(self, form):
+        product = form.save()
+        user = self.request.user
+        product.owner = user
+        product.save()
+        return super().form_valid(form)
+
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     template_name = "catalog/product_confirm_delete.html"
     success_url = reverse_lazy("catalog:product_list")
+
+    def post(self, request, *args, **kwargs):
+        product = self.get_object()
+        if request.user != product.owner and not request.user.has_perm("catalog.delete_product"):
+            return HttpResponseForbidden("У вас нет прав для удаления данного продукта.")
+
+        return super().post(request, *args, **kwargs)
 
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
@@ -39,6 +67,13 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     form_class = AddProductForm
     template_name = "catalog/add_product.html"
     success_url = reverse_lazy("catalog:product_list")
+
+    def post(self, request, *args, **kwargs):
+        product = self.get_object()
+        if request.user != product.owner:
+            return HttpResponseForbidden("У вас нет прав для редактирования продукта.")
+
+        return super().post(request, *args, **kwargs)
 
 
 class ContactsView(LoginRequiredMixin, TemplateView):
