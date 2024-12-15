@@ -3,24 +3,37 @@
 {% block content %}
 
 <div class="col-10">
-            <div class="mt-5">
-                <div class="col">
-                        <div class="card text-center">
-                            <div class="card-header">
-                            {{ product.name }}
-                                </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Цена: {{ product.price }}</h5>
-                                {% if product.image %}
-                                    <img class="rounded float-start img-fluid" width="50%" height="200" src="{{ product.image.url }}">
-                                {% endif %}
-                                <p class="card-text">Описание: {{ product.description }}</p>
-                                <a href="{% url 'catalog:product_list' %}" class="btn btn-light border-primary text-primary">На Гланую</a>
-                                <a href="{% url 'catalog:update_product' product.pk %}" class="btn btn-light border-primary text-primary">Редактировать</a>
-                                <a href="{% url 'catalog:delete_product' product.pk %}" class="btn btn-danger border-light text-light">Удалить</a>
-                            </div>
-                        </div>
-                    </div>
+    <div class="mt-5">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    {{ product.name }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Цена: {{ product.price }}</h5>
+                    {% if product.image %}
+                    <img class="rounded float-start img-fluid" width="50%" height="200" src="{{ product.image.url }}">
+                    {% endif %}
+                    <p class="card-text">Описание: {{ product.description }}</p>
+                    <a href="{% url 'catalog:product_list' %}" class="btn btn-light border-primary text-primary">На
+                        Гланую</a>
+                    {% if user == product.owner %}
+                    <a href="{% url 'catalog:update_product' product.pk %}"
+                       class="btn btn-light border-primary text-primary">Редактировать</a>
+                    {% endif %}
+                     {% if perms.catalog.can_unpublish_product or user == product.owner %}
+                    <a href="{% url 'catalog:delete_product' product.pk %}"
+                       class="btn btn-danger border-primary text-light">Удалить</a>
+                    {% endif %}
+                    {% if perms.catalog.can_unpublish_product %}
+                    <form action="{% url 'catalog:moderation' product.pk %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-warning border-primary text-light" type="submit">Снять с публикации</button>
+                    </form>
+                    {% endif %}
+                </div>
             </div>
+        </div>
     </div>
+</div>
 {% endblock %}
