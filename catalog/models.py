@@ -20,7 +20,7 @@ class Product(models.Model):
     updated_at = models.DateField(auto_now=True, null=True, blank=True, verbose_name="Дата изменения")
     is_published = models.BooleanField(choices=STATUS, default=True, verbose_name="Статус")
     owner = models.ForeignKey(
-        ModelUser, on_delete=models.CASCADE, null=True, blank=True, related_name="owner", verbose_name="Владелец"
+        ModelUser, on_delete=models.CASCADE, null=True, blank=True, related_name="products", verbose_name="Владелец"
     )
 
     def __str__(self):

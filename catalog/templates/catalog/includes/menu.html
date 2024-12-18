@@ -7,12 +7,11 @@
             <hr class="border border-light border-1 opacity-25">
             <a class="nav-link active" aria-current="page" href="{% url 'catalog:product_list' %}">Главная</a>
         </li>
+        {% for category in categories %}
         <li class="nav-item">
-            <a class="nav-link link-light" href="{% url 'catalog:category' 2 %}">Ноутбуки</a>
+            <a class="nav-link link-light" href="{% url 'catalog:category' category.pk %}">{{ category.name }}</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link link-light" href="{% url 'catalog:category' 3 %}">Смартфоны</a>
-        </li>
+        {% endfor %}
         {% if user.is_authenticated %}
         <li class="nav-item">
             <a class="nav-link link-light" href="#">Заказы</a>
@@ -33,11 +32,11 @@
                 {% if user.is_authenticated %}
                 <li><a class="dropdown-item" href="{% url 'users:profile' user.pk %}">Профиль</a></li>
                 <li>
-                <form method="post" action="{% url 'users:logout' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="dropdown-item">Выйти
-                    </button>
-                </form>
+                    <form method="post" action="{% url 'users:logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="dropdown-item">Выйти
+                        </button>
+                    </form>
                 </li>
                 {% else %}
                 <li>
