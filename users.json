@@ -4,7 +4,7 @@
     "pk": 2,
     "fields": {
         "password": "pbkdf2_sha256$870000$VlC0Clis2CKz1P682q8L5C$HapZPNaC8Yu7cQMsYStBnnG+TyqC4FrnFqw9ue0LlVI=",
-        "last_login": "2024-12-14T16:01:14.917Z",
+        "last_login": "2024-12-15T10:32:34.285Z",
         "is_superuser": true,
         "username": "catalogadmin",
         "first_name": "",
@@ -25,7 +25,7 @@
     "pk": 4,
     "fields": {
         "password": "pbkdf2_sha256$870000$dmqhSJKxJffFpAJCdPxABE$SbjX0i3COMPxNcDruaLeN3CMW70rOFR0cxOUzGXSMO0=",
-        "last_login": "2024-12-14T15:59:46.538Z",
+        "last_login": "2024-12-15T10:28:47.671Z",
         "is_superuser": false,
         "username": "Toxa_kak_toxa",
         "first_name": "Антон",
@@ -34,7 +34,7 @@
         "is_active": true,
         "date_joined": "2024-12-10T15:49:15Z",
         "email": "fynjy-666@mail.ru",
-        "phone_number": "783011",
+        "phone_number": "7923163783011",
         "avatar": "",
         "country": "Россия",
         "groups": [],
@@ -66,22 +66,20 @@
     "model": "users.modeluser",
     "pk": 9,
     "fields": {
-        "password": "pbkdf2_sha256$870000$sE5B30OVZs1SMf9A9C3kPF$P28szNDdgVXmpfmhKJckuNRca5tnCoN0UnwAqnVCMs0=",
-        "last_login": "2024-12-14T16:01:00.253Z",
+        "password": "pbkdf2_sha256$870000$sE5B30OVZs1SMf9A9C3kPF$P28szNDdgVXmpfmhKJckuNRca5tnCoN0UnwAqnVCb8Y=",
+        "last_login": "2024-12-15T10:29:16.255Z",
         "is_superuser": false,
-        "username": "Petrov",
+        "username": "Марина",
         "first_name": "",
         "last_name": "",
         "is_staff": false,
         "is_active": true,
         "date_joined": "2024-12-14T12:04:22Z",
-        "email": "Nma@bk.ru",
+        "email": "zma90@bk.ru",
         "phone_number": null,
         "avatar": "",
         "country": null,
-        "groups": [
-            1
-        ],
+        "groups": [],
         "user_permissions": []
     }
 }
