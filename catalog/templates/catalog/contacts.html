@@ -1,0 +1,40 @@
+{% extends 'catalog/base.html' %}
+{% block title %}Контакты{% endblock %}
+{% block content %}
+<div class="col-10">
+    <h1 class="mt-5 text-center">Контакты</h1>
+    <div class="mt-5 row align-items-start">
+        <div class="col-1">
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label">Имя</label>
+                            <input name="name" type="text" class="form-control" id="name">
+                            <label for="email" class="form-label">Почта</label>
+                            <input name="email" type="email" class="form-control" id="email"
+                                   placeholder="name@example.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Сообщение</label>
+                            <textarea name="message" class="form-control" id="message" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="card">
+                <div class="card-body border-light">
+                    <h5 class="card-title">Наши контакты</h5>
+                    <p class="card-text">Наш интернет магазин работает по всему миру.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

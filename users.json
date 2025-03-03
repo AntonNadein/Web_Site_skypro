@@ -1,0 +1,86 @@
+[
+{
+    "model": "users.modeluser",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$VlC0Clis2CKz1P682q8L5C$HapZPNaC8Yu7cQMsYStBnnG+TyqC4FrnFqw9ue0LlVI=",
+        "last_login": "2024-12-15T10:32:34.285Z",
+        "is_superuser": true,
+        "username": "catalogadmin",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-12-10T13:08:51.803Z",
+        "email": "Test@test.ru",
+        "phone_number": null,
+        "avatar": "",
+        "country": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.modeluser",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$dmqhSJKxJffFpAJCdPxABE$SbjX0i3COMPxNcDruaLeN3CMW70rOFR0cxOUzGXSMO0=",
+        "last_login": "2024-12-15T10:28:47.671Z",
+        "is_superuser": false,
+        "username": "Toxa_kak_toxa",
+        "first_name": "Антон",
+        "last_name": "Надеин",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-10T15:49:15Z",
+        "email": "fynjy-666@mail.ru",
+        "phone_number": "7923163783011",
+        "avatar": "",
+        "country": "Россия",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.modeluser",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$um3Uahy3d5rYh2msWIKJTf$nB/fcyKjinIMhvNVDBNQnWjmw9Go45+VspBlrrV/dWE=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Ivanov",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-14T10:40:45.533Z",
+        "email": "test2@test.ru",
+        "phone_number": "",
+        "avatar": "",
+        "country": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.modeluser",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$sE5B30OVZs1SMf9A9C3kPF$P28szNDdgVXmpfmhKJckuNRca5tnCoN0UnwAqnVCb8Y=",
+        "last_login": "2024-12-15T10:29:16.255Z",
+        "is_superuser": false,
+        "username": "Марина",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-14T12:04:22Z",
+        "email": "zma90@bk.ru",
+        "phone_number": null,
+        "avatar": "",
+        "country": null,
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
