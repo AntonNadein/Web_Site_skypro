@@ -5,3 +5,5 @@ python-dotenv==1.0.1
 redis==5.2.1
 eventlet==0.39.0
 gunicorn==23.0.0
+flake8==7.1.1
+
