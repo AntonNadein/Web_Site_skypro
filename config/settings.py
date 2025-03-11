@@ -122,7 +122,7 @@ LOGIN_URL = "users:login"
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': 'redis://redis/1',
+        'LOCATION': 'redis://localhost/1',
     }
 }
 
